@@ -22,14 +22,17 @@ RUN apt-get install -y libcgal-dev
 RUN apt-get install -y libcpprest-dev
 
 # copy data
-COPY data/plain_filling_hole /usr/data
-COPY data/ASCT-B_3D_Models_Mapping.csv /usr/data
-COPY data/organ_origins_meter.csv /usr/data
+# COPY data/plain_filling_hole /usr/data
+# COPY data/ASCT-B_3D_Models_Mapping.csv /usr/data
+# COPY data/organ_origins_meter.csv /usr/data
 
-# copy src
-COPY src/collision_detection_http_service /usr/src
+# # copy src
+# COPY src/collision_detection_http_service /usr/src
 
-WORKDIR /usr/src/collision_detection_http_service
+# copy
+COPY . .
+WORKDIR /src/collision_detection_http_service
 RUN mkdir build
 
 WORKDIR build 
+RUN cmake .. && make
